@@ -1,0 +1,64 @@
+📂 AI Conversation
+
+----------------------------------
+Tool: ChatGPT
+Date: 2025-05-12
+----------------------------------
+
+
+Me: How do I build a basic menu system with pyinputplus that guides users through different weather options?
+
+AI: To build a basic menu system with `pyinputplus` that guides users through different weather options, you can use the `pyinputplus.inputMenu()` function. This allows you to present a list of choices to the user and take input in a clean, user-friendly way.
+
+### Here's a simple example:
+
+```python
+import pyinputplus as pyip
+
+def show_weather_info(option):
+    if option == 'Current Weather':
+        print("Showing current weather...")
+        # Add your logic to fetch and display current weather here
+    elif option == 'Weather Forecast':
+        print("Showing 5-day forecast...")
+        # Add your logic to fetch and display forecast here
+    elif option == 'Weather by City':
+        city = input("Enter the city name: ")
+        print(f"Showing weather for {city}...")
+        # Add your logic for weather by city
+    elif option == 'Exit':
+        print("Goodbye!")
+        exit()
+
+def main_menu():
+    while True:
+        choice = pyip.inputMenu(['Current Weather', 'Weather Forecast', 'Weather by City', 'Exit'],
+                                prompt="Select a weather option:\n",
+                                numbered=True)
+        show_weather_info(choice)
+
+if __name__ == '__main__':
+    main_menu()
+```
+
+### What this does:
+
+* Presents a numbered list of options.
+* Lets the user choose one.
+* Calls a function based on the choice.
+* Loops until the user chooses "Exit".
+
+### Example Output:
+
+```
+Select a weather option:
+1. Current Weather
+2. Weather Forecast
+3. Weather by City
+4. Exit
+> 2
+Showing 5-day forecast...
+```
+
+You can later integrate actual weather data using APIs like OpenWeatherMap. Let me know if you want help with that too.
+

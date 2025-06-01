@@ -1,0 +1,86 @@
+📂 AI Conversation
+
+----------------------------------
+Tool: ChatGPT
+Date: 2025-05-10
+----------------------------------
+
+
+Me: How can I get weather data in Python from an API and make sure it doesn’t crash if there’s no internet?
+
+AI: To get weather data in Python from an API and ensure your program doesn’t crash if there’s no internet, follow these steps:
+
+---
+
+### ✅ 1. Choose a Weather API
+
+Use a free weather API like:
+
+* **OpenWeatherMap**: [https://openweathermap.org/api](https://openweathermap.org/api)
+* **WeatherAPI**: [https://www.weatherapi.com/](https://www.weatherapi.com/)
+* **Visual Crossing**: [https://www.visualcrossing.com/](https://www.visualcrossing.com/)
+
+Sign up and get your API key.
+
+---
+
+### ✅ 2. Install Required Library
+
+```bash
+pip install requests
+```
+
+---
+
+### ✅ 3. Sample Code with Error Handling
+
+```python
+import requests
+
+def get_weather(city):
+    api_key = 'YOUR_API_KEY'  # Replace with your API key
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
+
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()  # Raise HTTPError for bad responses
+        data = response.json()
+
+        weather = {
+            "city": data["name"],
+            "temperature": data["main"]["temp"],
+            "description": data["weather"][0]["description"]
+        }
+
+        return weather
+
+    except requests.ConnectionError:
+        return {"error": "No internet connection."}
+    except requests.Timeout:
+        return {"error": "The request timed out."}
+    except requests.HTTPError as http_err:
+        return {"error": f"HTTP error occurred: {http_err}"}
+    except Exception as err:
+        return {"error": f"An unexpected error occurred: {err}"}
+
+# Example usage
+result = get_weather("London")
+print(result)
+```
+
+---
+
+### 🔒 Safe Output Handling
+
+This approach:
+
+* Handles **no internet** (`ConnectionError`)
+* Handles **timeout**
+* Handles **invalid API response**
+* Avoids crashing by **returning a dictionary with an error**
+
+---
+
+Let me know which API you're using, and I can tailor the example for that.
+
+

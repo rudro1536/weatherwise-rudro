@@ -1,0 +1,58 @@
+📂 AI Conversation
+
+----------------------------------
+Tool: ChatGPT
+Date: 2025-05-11
+----------------------------------
+
+
+Me: I want to make two different types of charts with my weather data. Can you give me simple code examples with titles and labels?
+
+AI: Sure! Here's an example of how to create **two different types of charts** using Python and `matplotlib` for a basic weather dataset. Let's assume you have weather data like temperature and rainfall over a week.
+
+---
+
+### Sample Weather Data
+
+```python
+days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+temperatures = [22, 24, 19, 23, 25, 28, 26]  # in Celsius
+rainfall = [5, 3, 0, 0, 2, 8, 10]  # in mm
+```
+
+---
+
+### 1. Line Chart for Temperature
+
+```python
+import matplotlib.pyplot as plt
+
+# Line chart
+plt.figure(figsize=(8, 5))
+plt.plot(days, temperatures, marker='o', color='orange')
+plt.title('Daily Temperatures')
+plt.xlabel('Day of the Week')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```
+
+---
+
+### 2. Bar Chart for Rainfall
+
+```python
+# Bar chart
+plt.figure(figsize=(8, 5))
+plt.bar(days, rainfall, color='blue')
+plt.title('Daily Rainfall')
+plt.xlabel('Day of the Week')
+plt.ylabel('Rainfall (mm)')
+plt.tight_layout()
+plt.show()
+```
+
+---
+
+These examples are simple and should work directly with `matplotlib`. Let me know if you want to visualize more variables (e.g., humidity, wind speed) or use libraries like `seaborn`, `plotly`, or `pandas`.
